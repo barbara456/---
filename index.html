@@ -2,15 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hello world</title>
+    <script src='./vue.js'></script>
 </head>
 <body>
-    <div id="app"></div>
+    <div id="app">{{content}}</div>
     <script>
-        var dom = document.getElementById('app');
-        dom.innerHTML = 'hello world'
+        // var dom = document.getElementById('app');
+        // dom.innerHTML = 'hello world'
+
+        // 声明一个变量 这个变量是一个名字叫#app的 vue 实例 它会和 id 为app的 dom节点 绑定
+        // 变量名本身无所谓叫什么只是给这个节点取了一个新代号
+        var app = new Vue({
+            el: '#app',
+            data: {
+                content: 'hello world'
+            }
+        })
     </script>
 </body>
 </html>
