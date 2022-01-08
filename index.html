@@ -11,7 +11,9 @@
         // var dom = document.getElementById('app');
         // dom.innerHTML = 'hello world'
 
-        // 声明一个变量 这个变量是一个名字叫#app的 vue 实例 它会和 id 为app的 dom节点 绑定
+        // 声明一个变量 
+        // 通过 new Vue() 创建一个名字叫#app的 vue 实例赋值给这个变量
+        // 它会和 id 为app的 dom节点 绑定
         // 变量名本身无所谓叫什么只是给这个节点取了一个新代号
         var app = new Vue({
             el: '#app',
@@ -19,6 +21,12 @@
                 content: 'hello world'
             }
         })
+
+        // 实现 2 秒后 dom 内文字为 bye world
+        // $data 是上面 data 的别名
+        setTimeout(() => {
+            app.$data.content = 'bye world'
+        },2000)
     </script>
 </body>
 </html>
