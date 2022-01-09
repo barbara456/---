@@ -25,7 +25,8 @@
                 btnClick:
                 // function  alert inputValue 值
                 function() {
-                    alert(this.inputValue)
+                    this.list.push(this.inputValue)
+                    this.inputValue = ''
                 }
                 // 箭头函数会 alert undefined
                 // () => {
