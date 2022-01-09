@@ -10,10 +10,16 @@
         <input type="text" v-model='inputValue'>
         <button @click='btnClick'>提交</button>
         <ul>
-            <li v-for='item in list'>{{item}}</li>
+            <!-- <li v-for='item in list'>{{item}}</li> -->
+            <todo-item v-for='item in list' :content='item'></todo-item>
         </ul>
     </div>
     <script>
+        // Vue全局组件语法Vue.component
+        Vue.component('TodoItem', {
+            props: ['content'],
+            template: '<li>{{content}}</li>'
+        })
         var app = new Vue({
             el: '#app',
             data: {
