@@ -16,12 +16,21 @@
     </div>
     <script>
         // Vue全局组件语法Vue.component
-        Vue.component('TodoItem', {
+        // Vue.component('TodoItem', {
+        //     props: ['content'],
+        //     template: '<li>{{content}}</li>'
+        // })
+
+        // 局部组件 TodoItem
+        var TodoItem = {
             props: ['content'],
             template: '<li>{{content}}</li>'
-        })
+        }
         var app = new Vue({
             el: '#app',
+            components: {
+                TodoItem: TodoItem
+            },
             data: {
                 list: [],
                 // 可以在控制台通过 app.$data.inputValue 取到此值
