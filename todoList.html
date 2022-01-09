@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello world</title>
+    <script src='./vue.js'></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model='inputValue'>
+        <button @click='btnClick'>提交</button>
+        <ul>
+            <li v-for='item in list'>{{item}}</li>
+        </ul>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                list: [],
+                // 可以在控制台通过 app.$data.inputValue 取到此值
+                inputValue: ''
+            },
+            methods: {
+                btnClick:
+                // function  alert inputValue 值
+                function() {
+                    alert(this.inputValue)
+                }
+                // 箭头函数会 alert undefined
+                // () => {
+                //     alert(this.inputValue)
+                // }
+            }
+        })
+    </script>
+</body>
+</html>
