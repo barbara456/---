@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+
+    <div id="root">
+        <div @click='messageClick'>
+            {{message}}
+        </div>
+        <item></item>
+    </div>
+
+    <script>
+
+        // 全局组件要放在前面
+        // 程序加载肯定有一个入口点, 这个入口点的Vue实例被叫做根实例
+        // Vue中的每一个组件也是一个 vue 实例
+        Vue.component('item', {
+            template: '<div>hello world</div>'
+        })
+
+        // 这个 vm 就是 Vue 的实例
+        // 通过 new Vue() 创建出来 Vue()其实是一个类
+        var vm = new Vue({
+            // 接下来我们一般会让这个实例去接管页面上某一部分 dom 的渲染
+            // el属性 就是定义要接管的 dom
+            el: '#root',
+
+            // vue实例 vm 接管了 id 为 root 的 dom
+            // vue会对这部分 dom 进行分析 它发现里面用了{{message}}的语法
+            // 就回去实例里的 data 属性查找 有没有 message 的数据
+            // 如果有 就用 message 的数据替换掉 {{message}} 这个插值表达式
+            data: {
+                message: '欢迎来到新手村'
+            },
+
+            // 给 dom 绑定事件:通过 v-on: 或者 @
+            // 因为 Vue实例 接管了这部分dom, 所以他能分析出这部分 dom 绑定了一个叫 messageClick 的事件
+            // 所以当事件被触发时, Vue 会去实例的 methods 里找这个方法 去执行
+            methods: {
+                messageClick: function () {
+                    alert('h')
+                }
+            }
+
+            // 一个实例中还可以定义props, watch, computed 生命周期钩子 等其他属性
+        })
+    </script>
+</body>
+</html>

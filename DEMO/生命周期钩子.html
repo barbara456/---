@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命周期钩子</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        hello world
+    </div>
+
+    <script>
+
+        // 1.生命周期函数就是 vue 实例在某一个时间点自动执行的函数
+        // 2.钩子函数不放在 methods 里, 而是单独的放在vue 实例里
+        // 主要有 8 个 + activated, deactivated, errCaptured 一共 11 个
+
+        var vm = new Vue({
+            el: '#app',
+            template: '<div>{{test}}</div>',
+            data: {
+                test: '欢迎测试钩子函数'
+            },
+
+            // vue实例进行基础的!初始化后
+            // 创建vue实例前执行 beforeCreate
+            beforeCreate: function() {
+                console.log('beforeCreate')
+            },
+
+            // 接下来 vue 处理一些外部的注入
+            // 包括双向绑定等一些功能
+
+            // 接下来 vue 实例的初始化就基本完成了
+            // 初始化完成后会自动执行 created
+
+            // 创建 vue 实例后执行
+            created: function() {
+                console.log('created')
+            },
+
+            // 查找实例上是否有 template 属性
+            // 若有则用template规定的模板 若无 则用实例所挂载的/接管的 dom 元素及其内容作为模板
+
+            // 此时已经有了要渲染的模板
+            // 在渲染之前
+            // 在模板和数据相结合 即将挂载在页面之前会执行 beforeMount
+            beforeMount: function() {
+                console.log(this.$el)
+                console.log('beforeMount')
+            },
+
+            // beforeMount时 元素还没有被渲染到页面上
+            // mount阶段: 我们模板结合数据生成的 vue实例 所挂载的 dom 元素 会被渲染到 页面上
+            // 成熟的 dom 元素渲染到页面后会自动执行 mounted
+            mounted: function() {
+                console.log(this.$el)
+                console.log('mounted')
+            },
+
+            // 当数据发生改变时 update 的两个钩子函数会执行
+            // 数据改变 还没有重新渲染之前 beforeUpdate 会执行
+            beforeUpdate: function () {
+                console.log('beforeUpdate')
+            },
+
+            // 当重新渲染之后 updated 会执行
+            updated: function () {
+                console.log('updated')
+            },
+
+
+            beforeDestroy: function() {
+                console.log('beforeDestroy')
+            },
+            destroyed: function() {
+                console.log('destroyed')
+            }
+        })
+    </script>
+</body>
+</html>
