@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模板语法</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <!-- 模板语法一: 插值表达式 -->
+            <div>{{message1 + ' 欢迎来到德莱联盟'}}</div>
+
+            <!-- 模板语法二: v-text 和插值表达式功能一样 当然 插值表达式语法更简单 -->
+            <div v-text= 'message2 + " 去和影子玩拳击吧"'></div>
+
+            <!-- 模板语法二: v-html 会对 html 标签进行解析转义 数据中若有 html 标签则会生效 -->
+            <div v-html= 'message3 + " 5 个!"'></div>
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message1: '德莱文',
+                message2: '薇恩',
+                message3: '<h1>卡莎</h1>'
+            },
+        })
+    </script>
+</body>
+</html>
