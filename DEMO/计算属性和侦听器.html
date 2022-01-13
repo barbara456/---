@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性和侦听器</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- {{content()}} -->
+        {{content}}
+        {{game}}
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                name: '德莱文',
+                slogan: '欢迎来到德莱联盟',
+                // content: '德莱文: 欢迎来到德莱联盟',
+                game: '王者荣耀'
+            },
+
+            // 1.计算属性: 内置缓存机制, 计算属性的变量(如: content)所依赖的变量若没有改变 则不会再重新计算
+            // 计算属性默认是 getter 函数 也可以手动设置 get 和 set
+            computed: {
+                content: {
+                    // 计算属性的getter函数: 当取 content 属性值的时候 get 会被执行
+                    get: function () {
+                        console.log('重新计算1');
+                        return this.name + ': ' + this.slogan
+                    },
+                    // 计算属性的setter函数: 当设置 content 属性值的时候 set 会被执行
+                    set: function (newValue) {
+                        this.name = newValue+this.name;
+                        this.slogan = newValue+this.slogan;
+                    }
+                }
+                // content: function () {
+                //     console.log('重新计算');
+                //     return this.name + ': ' + this.slogan
+                // },
+            },
+
+            // 2.methods 方法: 模板上通过插值表达式执行方法, 内部无缓存机制, 只要实例的数据改变就全部重新渲染
+            // methods: {
+            //     content: function name() {
+            //         console.log('重新计算');
+            //         return this.name + ': ' + this.slogan
+            //     }
+            // },
+
+            // 3.watch 方法: 有缓存, 若所监听的数据发生改变则执行重新计算这个数据的方法代码
+            // watch: {
+            //     name: function () {
+            //         console.log('name变了')
+            //         this.content = this.name + ': ' + this.slogan
+            //     },
+            //     slogan: function () {
+            //         console.log('slogan变了')
+            //         this.content = this.name + ': ' + this.slogan
+            //     },
+            // }
+        })
+    </script>
+</body>
+</html>
