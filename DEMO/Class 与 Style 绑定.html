@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello world</title>
+    <script src='./vue.js'></script>
+    <style>
+        .content1Color{
+            color: red;
+        }
+        .content2Color{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <!-- 给这个 dom 绑定一个 class 叫 contentColor -->
+    <!-- 这个 contentColor 的样式是否挂在该 dom 上是由: contentToRed 的布尔值来决定 -->
+    <!-- 若布尔值为 true 则挂在该 dom 上; 若为 false 则不挂在 dom 上 -->
+    <!-- contentToRed 的布尔值默认为 false 通过点击事件改为 true -->
+
+
+    <div id="app">
+        <!-- 动态class的对象绑定  -->
+        <div
+            @click='clickToRed'
+            :class='{content1Color: contentToRed}'
+        >
+            {{content1}}
+        </div>
+        <!-- 动态class的数组绑定  -->
+        <div
+            @click='clickToBlue'
+            :class='[contentToBlue]'
+        >
+            {{content2}}
+        </div>
+
+        <!-- 动态style的对象绑定 -->
+        <div
+            @click='clickToYellow'
+            :style='style3'
+        >
+            {{content3}}
+        </div>
+        <!-- 动态style的数组绑定 -->
+        <div
+            @click='clickToGreen'
+            :style='[style4]'
+        >
+            {{content4}}
+        </div>
+
+
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                content1: '动态对象class',
+                content2: '动态数组class',
+                content3: '动态对象style',
+                content4: '动态数组style',
+
+                // 动态对象class 的数据初始化
+                contentToRed: false,
+                // 动态数组class 的数据初始化
+                contentToBlue: '',
+
+                // 动态对象style 的数据初始化
+                style3: {
+                    color: 'yellow'
+                },
+                // 动态数组style 的数据初始化
+                style4: {
+                    color: 'green'
+                }
+            },
+            methods: {
+                // 动态对象class
+                clickToRed: function () {
+                    this.contentToRed = !this.contentToRed;
+                },
+                // 动态数组class
+                clickToBlue: function () {
+                    this.contentToBlue = this.contentToBlue ? '' : 'content2Color';
+                },
+
+                // 动态对象 style
+                clickToYellow: function () {
+                    this.style3.color = this.style3.color ? '' : 'yellow'
+                },
+                // 动态数组 style
+                clickToGreen: function () {
+                    this.style4.color = this.style4.color ? '' : 'green'
+                }
+
+
+            }
+        })
+
+        // :class = 'JS表达式'   :绑定 这个符号决定了 class 的值的引号里是一个 JS 表达式
+        // 这个 JS 表达式可以是一个对象 属性-值的形式 也叫 class 的对象绑定
+        // 这个 JS 表达式也可以是一个数组, 通过给数组的成员赋值, 使提前准备好的类生效
+
+        // 这两个方法绑定的变量名都需要初始化 来获得Vue的动态监听支持
+
+    </script>
+</body>
+</html>
