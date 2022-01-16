@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模板语法</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-if='show1'>{{message1}}</div>
+        <div v-if='show2'>{{message2}}</div>
+        <!-- v-if: 不展示是直接把该 dom 节点从 dom 树中移除了 -->
+        <!-- v-show: 不展示是 dom 还在 只是设置了 display: none -->
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                show1: true,
+                message1: '德莱文',
+                show2: true,
+                message2: '薇恩',
+            },
+        })
+        // 若需要频繁隐藏和显示 v-show 明显性能更好
+    </script>
+</body>
+</html>
