@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>template模板占位符</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div
+            v-for='(item, index) of list'
+            :key='item.id'
+        >
+            <div>
+                {{item.title}}---{{index}}
+            </div>
+            <span>{{item.id}}</span>
+        </div>
+        <template
+            v-for='(item, index) of list'
+            :key='item.id'
+        >
+            <div>
+                {{item.title}}---{{index}}
+            </div>
+            <span>{{item.id}}</span>
+        </template>
+    </div>
+    <script>
+        // 通过数组下标取到成员 对成员进行的改动无法响应式渲染
+        // 只能通过
+        // 1: 数组的 7 种方法改动成员 push pop shift unshift splice sort reverse
+        // 2: 改变数组的引用: 重新给一个新的数组
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: [
+                {
+                    id: '01',
+                    title:'打劫就烬派出索'
+                },
+                {
+                    id: '02',
+                    title:'大家晚安亚索除外'
+                },
+                {
+                    id: '03',
+                    title:'我和Faker五五开'
+                },
+                {
+                    id: '04',
+                    title:'我锤石你德玛'
+                }
+                ]
+            },
+        })
+    </script>
+</body>
+</html>
